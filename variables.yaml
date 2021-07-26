@@ -1,8 +1,8 @@
 transactionalParameters:
   amount: 500000
-  contrib: "Python 3.9 - Flask v2.0" 
+  contrib: "Pytho_3.9-Flask_v2.0" 
   currency: "COP"
-  formAction: "CUSTOMER_WALLET"
+  formAction: ""
   orderId: "myOrderId-123123"
   taxRate: 19
   customer:
@@ -16,18 +16,17 @@ transactionalParameters:
     name: "sotre1"
   transactionOptions:
     cardOptions:
-      paymentSource: "EC"
-      retry: 4
-      debitCreditSelector: "CREDIT"
-      firstInstallmentDelay: 1
-      installmentNumber: 36
-      captureDelay: 1
-      manualValidation: "NO"
-      mid: "1"
+      paymentSource: ""
+      retry: 2
+      debitCreditSelector: ""
+      firstInstallmentDelay: ""
+      installmentNumber: ""
+      captureDelay: ""
+      manualValidation: ""
+      mid: ""
 behaviorParameters:
   api_url: "change_me"
   port: 5000
-  kr_popin: False
   test_mode: True
   shopId: "change_me" 
   password_testing: "change_me"

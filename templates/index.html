@@ -9,19 +9,19 @@
 </head>
 
 <body>
+  {% macro testing(form) %}
+    {% for field in form %}
+      {% if form[field] is mapping %}
+        {{ testing(form[field]) }}
+      {% else %}
+        <label>{{ field }}</label><br>
+        <input name={{ field }} type="text" value={{ form[field] }}><br>
+      {% endif %}
+    {% endfor %} 
+  {% endmacro %}
+
   <form id="lyraForm" action="/process-data" method="post">
-    <label>amount</label>
-    <input required name="amount" type="text" value={{ form['amount'] }}><br>
-    <label>currency</label>
-    <input required name="currency" type="text" value={{ form['currency'] }}><br>
-    <label>contrib</label>
-    <input required name="contrib" type="text" value={{ form['contrib'] }}> <br>
-    <label>email</label>
-    <input required name="email" type="email" value={{ form['customer']['email']}}> <br>
-    <label>reference</label>
-    <input required name="reference" type="text" value={{ form['customer']['reference']}}> <br>
-    <label>orderid</label>
-    <input required name="orderId" type="text" value={{ form['orderId'] }}> <br>
+    {{ testing(form) }}
     <br>
     <h6>Activate kr-popin</h6>
     <label class="switch">
