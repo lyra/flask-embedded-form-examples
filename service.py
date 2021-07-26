@@ -1,6 +1,9 @@
 import hashlib, base64, hmac, json
 
+from flask import Flask, request
 import yaml
+
+app = Flask(__name__)
 
 
 def read_yaml():
@@ -21,3 +24,36 @@ def compute_hmac_sha256_signature(key, message):
     message = str.encode(message)
     signature = hmac.new(byte_key, message, hashlib.sha256).hexdigest()
     return signature
+
+
+def url_parser(obj_dict) -> str:
+    url_str = ''
+    for i in obj_dict.keys():
+        url_str += f"{i}={obj_dict[i] if obj_dict[i] != '' else 'null'}&" if type(obj_dict[i]) != dict else ''
+        if type(obj_dict[i]) == dict:
+            url_str += url_parser(obj_dict[i])
+    return url_str
+
+
+def assign_parameters(obj_dict):
+    for value in obj_dict.keys():
+        if request.args.get(value) != None:
+            obj_dict[value] = request.args.get(value)
+        if type(obj_dict[value]) == dict:
+            assign_parameters(obj_dict[value])
+    return obj_dict
+
+
+def new_body_to_send(obj_dict):
+    new_body = {}
+    for value in obj_dict.keys():
+        try:
+            if request.form[value] != "null":
+                new_body[value] = request.form[value]
+        except KeyError:
+            app.logger.error(f'"{value}" not found or is a key.')
+            pass
+        if type(obj_dict[value]) == dict:
+            new_body[value] = new_body_to_send(obj_dict[value])
+    app.logger.info("Body to send:", new_body)
+    return new_body

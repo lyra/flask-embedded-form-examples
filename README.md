@@ -40,7 +40,23 @@ Login to BackOffice Vendor, go to `Configuration > Store` then choose the shop y
 then go to `API REST Keys` tab and there you will find both production and 
 testing keys.
 
+You will find the keys for `shopId`, `password_testing`, `password_production`, and `api_url` 
+at the first part of the page, in the rest apis keys section.
+
+At the second section, Javascript client and SDK movil, you will find the keys for 
+`sdk_password_testing` and `sdk_password_production`.
+
+At the third section you wil find the HMAC SHA 256 key, to compute the signature, for the 
+values `sha_key_testing` and `sha_key_production`.
+
 Open your terminal on the project and run the command `python main.py` 
 to run the flask project. By default it will run on `0.0.0.0:5000`, 
 go to your browser, go to the url project and you will can use the example.
 
+## License
+
+Each source file included in this distribution is licensed 
+under the GNU GENERAL PUBLIC LICENSE (GPL 3.0). Please see 
+LICENSE.txt for the full text of the GPL 3.0 license. It is 
+also available through the world-wide-web at this 
+URL: http://www.gnu.org/licenses/gpl.html.
