@@ -34,8 +34,8 @@ def capture_ipn():
 
     return render_template(
         'embedded_form.html', 
-        api_url=behavior_parameters['api_url'],
-        kr_public_key=behavior_parameters['sdk_password_testing'],
+        rest_api_server_name=behavior_parameters['rest_api_server_name'] if request.form.get('rest_api_server_name') is None else request.form.get('rest_api_server_name'),
+        kr_public_key=behavior_parameters['sdk_public_test_key'],
         kr_popin=True if request.form.get('kr-popin') else False,
         formToken=formToken, 
     )
@@ -46,7 +46,7 @@ def ipn():
     if request.form.get('kr-answer') == None:
         return "KO - Invalid request.", 400
     app.logger.info(json.dumps(json.loads(request.form.get('kr-answer').replace('"','\"')), indent=4))
-    signature = service.compute_hmac_sha256_signature(behavior_parameters['password_testing'], request.form.get('kr-answer'))
+    signature = service.compute_hmac_sha256_signature(behavior_parameters['testing_password'], request.form.get('kr-answer'))
     if signature != request.form.get('kr-hash'):
         return "KO - Signatures does not match.", 401
 
@@ -56,8 +56,13 @@ def ipn():
 
 @app.route('/redirect', methods=['POST'])
 def redirect_():
+    """
+    Redirect will proced with the payment, and will either succeed or refused the payment.
+    """
     if request.args.get('status') == 'success':
-        signature = service.compute_hmac_sha256_signature(behavior_parameters['sha_key_testing'], request.form.get('kr-answer'))
+        signature = service.compute_hmac_sha256_signature(
+            behavior_parameters['hmac_sha_256_test_key'], request.form.get('kr-answer')
+        )
         app.logger.info(json.dumps(json.loads(request.form.get('kr-answer').replace('"','\"')),indent=4))
 
         return render_template(
@@ -72,19 +77,26 @@ def redirect_():
 
 
 def create_form_token(entry_body):
+    """
+    Create form token to load the payment method
+    """
     shopId = behavior_parameters['shopId']
-    password_testing = behavior_parameters['password_testing']
-    string_to_encode = f"{shopId}:{password_testing}"
+    testing_password = behavior_parameters['testing_password']
+    string_to_encode = f"{shopId}:{testing_password}"
 
-    URL = f"{behavior_parameters['api_url']}/api-payment/V4/Charge/CreatePayment"
+    URL = f"{behavior_parameters['rest_api_server_name']}api-payment/V4/Charge/CreatePayment"
     get_encoder = service.encode_to_base64(string_to_encode)
     set_header = {"Authorization": f"Basic {get_encoder}"}
-    return json.loads(requests.post(
-        URL, data=entry_body, headers=set_header
-    ).text)['answer']['formToken']
+    try:
+        form_token = json.loads(requests.post(
+            URL, data=entry_body, headers=set_header
+        ).text)['answer']['formToken']
+        return form_token
+    except:
+        pass 
 
 
 if __name__ == "__main__":
     app.debug = behavior_parameters['test_mode']
     logging.basicConfig(filename='lyra.log', level=logging.DEBUG)
-    app.run(host="0.0.0.0", port=behavior_parameters['port'])
+    app.run(host="127.0.0.1", port=behavior_parameters['port'])

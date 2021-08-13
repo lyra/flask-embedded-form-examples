@@ -6,14 +6,26 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-  <script {% set first_url=api_url~"/static/js/krypton-client/V4.0/stable/kr-payment-form.min.js" %} src={{ first_url }}
-    kr-public-key={{ kr_public_key }} kr-post-url-success="/redirect?status=success" kr-post-url-refused="/redirect?status=refused">
-    </script>
-
-  <link rel="stylesheet" {% set second_url=api_url~"/static/js/krypton-client/V4.0/ext/classic-reset.css" %} href={{
-    second_url }}>
-  <script {% set third_url=api_url~"/static/js/krypton-client/V4.0/ext/classic.js" %} src={{ third_url }}>
+  <script 
+    {% set first_url=rest_api_server_name~"static/js/krypton-client/V4.0/stable/kr-payment-form.min.js" %} 
+    src={{ first_url }}
+    kr-public-key={{ kr_public_key }} 
+    kr-post-url-success="/redirect?status=success" 
+    kr-post-url-refused="/redirect?status=refused"
+  >
   </script>
+
+  <link rel="stylesheet" 
+    {% set second_url=rest_api_server_name~"static/js/krypton-client/V4.0/ext/classic-reset.css" %} 
+    href={{ second_url }}
+  >
+  <script 
+    {% set third_url=rest_api_server_name~"static/js/krypton-client/V4.0/ext/classic.js" %} 
+    src={{ third_url }}
+  >
+  </script>
+
+  <title>Lyra - Embedded form with Flask</title>
 </head>
 
 <body>

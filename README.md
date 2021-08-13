@@ -23,34 +23,36 @@ is an error follow the commands from below.
 1. Run the following comands to install the project dependencies.
 
     ``` bash
+    # run to create the python virtual environment
     python -m venv .env
 
+    # run to activate the python virtual environment
     source ./.env/bin/activate # for unix/linux
     .\.env\Scripts\activate # for windows
 
+    # install all dependencies to run the example
     pip install -r requirements.txt
     ```
 
 ## Running the app
 
-Change the values with a `change_me` on the `variables.yaml` file with 
-the values of your shop, thus you can find them on the BackOffice Vendor.
+To run the example, change the values with a `change_me` on the `variables.yaml` file 
+with the values of your shop, thus you can find them on the BackOffice Vendor.
 
 Login to BackOffice Vendor, go to `Configuration > Store` then choose the shop you like,
-then go to `API REST Keys` tab and there you will find both production and 
-testing keys.
+then go to `API REST Keys` tab and there you will find both production and testing keys.
 
-You will find the keys for `shopId`, `password_testing`, `password_production`, and `api_url` 
-at the first part of the page, in the rest apis keys section.
+You will find the keys for `shopId`, `testing_password`, `production_password`, and `rest_api_server_name` at the first part of the page, in the **REST API keys** section.
 
-At the second section, Javascript client and SDK movil, you will find the keys for 
-`sdk_password_testing` and `sdk_password_production`.
+At the second section, **Javascript client and SDK movil**, you will find the keys for 
+`sdk_public_test_key` and `sdk_public_production_key`.
 
-At the third section you wil find the HMAC SHA 256 key, to compute the signature, for the 
-values `sha_key_testing` and `sha_key_production`.
+At the third section, at **REST API: keys used to calculate / check the kr-hash field** 
+you wil find the HMAC SHA 256 key, to compute the signature, for the values 
+`hmac_sha_256_test_key` and `hmac_sha_256_production_key`.
 
 Open your terminal on the project and run the command `python main.py` 
-to run the flask project. By default it will run on `0.0.0.0:5000`, 
+to run the flask project. By default it will run on `127.0.0.1:5000/`, 
 go to your browser, go to the url project and you will can use the example.
 
 ## License

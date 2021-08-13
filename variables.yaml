@@ -1,7 +1,14 @@
 transactionalParameters:
   amount: 500000
-  contrib: "Pytho_3.9-Flask_v2.0" 
-  currency: "COP"
+  contrib: "Python_3.9-Flask_v2.0" 
+  currency: [
+    "COP - Colombian peso", 
+    "USD - US dollar", 
+    "CAD - Canadian dollar", 
+    "DDK - Danish crown", 
+    "JPY - Japanese yen", 
+    "NOK - Norwegian crown"
+  ]
   formAction: ""
   orderId: "myOrderId-123123"
   taxRate: 19
@@ -25,13 +32,13 @@ transactionalParameters:
       manualValidation: ""
       mid: ""
 behaviorParameters:
-  api_url: "change_me"
+  rest_api_server_name: "change_me"
   port: 5000
   test_mode: True
   shopId: "change_me" 
-  password_testing: "change_me"
-  password_production: "change_me"
-  sdk_password_testing: "change_me"
-  sdk_password_production: "change_me"
-  sha_key_testing: "change_me"
-  sha_key_production: "change_me"
+  testing_password: "change_me"
+  production_password: "change_me"
+  sdk_public_test_key: "change_me"
+  sdk_public_production_key: "change_me"
+  hmac_sha_256_test_key: "change_me"
+  hmac_sha_256_production_key: "change_me"

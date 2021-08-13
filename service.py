@@ -18,7 +18,7 @@ def encode_to_base64(str_to_encode):
 def compute_hmac_sha256_signature(key, message):
     """
     `key` argument is the password of the store
-    and the `wmessage` argument is all the arguments concatenated, plus the password store
+    `message` argument is all the arguments concatenated, plus the password store
     """
     byte_key = str.encode(key)
     message = str.encode(message)
@@ -27,9 +27,13 @@ def compute_hmac_sha256_signature(key, message):
 
 
 def url_parser(obj_dict) -> str:
+    """
+    Create url for the form
+    """
     url_str = ''
     for i in obj_dict.keys():
-        url_str += f"{i}={obj_dict[i] if obj_dict[i] != '' else 'null'}&" if type(obj_dict[i]) != dict else ''
+        if i != "currency":
+            url_str += f"{i}={obj_dict[i] if obj_dict[i] != '' else 'null'}&" if type(obj_dict[i]) != dict else ''
         if type(obj_dict[i]) == dict:
             url_str += url_parser(obj_dict[i])
     return url_str
@@ -45,6 +49,9 @@ def assign_parameters(obj_dict):
 
 
 def new_body_to_send(obj_dict):
+    """
+    Create a new object with the incoming data from the form
+    """
     new_body = {}
     for value in obj_dict.keys():
         try:

@@ -1,4 +1,4 @@
-# Contributing to Java payment form examples
+# Contributing to Lyra Flask embedded form example
 
 Anyone is welcome to contribute to this project. 
 There are various ways you can contribute:
