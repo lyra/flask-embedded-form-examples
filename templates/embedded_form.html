@@ -24,25 +24,32 @@
     src={{ third_url }}
   >
   </script>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 
   <title>Lyra - Embedded form with Flask</title>
 </head>
 
 <body>
-  <!-- payment form -->
-  <div class="kr-embedded" kr-form-token={{ formToken }} {% if kr_popin %} kr-popin {% endif %}>
+  <div class="embedded-form">
+    <!-- payment form -->
+    <div class="kr-embedded" kr-form-token={{ formToken }} {% if kr_popin %} kr-popin {% endif %}>
 
-    <!-- payment form fields -->
-    <div class="kr-pan"></div>
-    <div class="kr-security-code"></div>
-    <div class="kr-expiry"></div>
+      <!-- payment form fields -->
+      <div class="kr-pan"></div>
+      <div class="kr-security-code"></div>
+      <div class="kr-expiry"></div>
 
-    <!-- payment form submit button -->
-    <button class="kr-payment-button"></button>
+      <!-- payment form submit button -->
+      <button class="kr-payment-button"></button>
 
-    <!-- error zone -->
-    <div class="kr-form-error"></div>
-  </div>
+      <!-- error zone -->
+      <div class="kr-form-error"></div>
+    </div>
+
+    <br>
+    <a href="/"><button class="go-back_button">Go back to index</button></a>
+</div>
+
 </body>
 
 </html>

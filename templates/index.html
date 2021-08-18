@@ -9,33 +9,33 @@
   <title>Lyra - Embedded form with Flask</title>
 </head>
 
-<body>
-  {% macro testing(form) %}
-    {% for field in form %}
-      {% if form[field] is mapping %}
-        {{ testing(form[field]) }}
+{% macro load_form(form) %}
+  {% for field in form %}
+    {% if form[field] is mapping %}
+      {{ load_form(form[field]) }}
+    {% else %}
+      {% if field == "currency" %}
+        <label>{{ field }}</label><br>
+        <select name={{ field }} id={{ field }} required>
+          {% for currency in form[field] %}
+            <option value={{ currency[:3] }}>{{ currency }}</option>
+          {% endfor %}
+        </select>
+        <br>
       {% else %}
-        {% if field == "currency" %}
-          <label>{{ field }}</label><br>
-          <select name={{ field }} id={{ field }} required>
-            {% for currency in form[field] %}
-              <option value={{ currency[:3] }}>{{ currency }}</option>
-            {% endfor %}
-          </select>
-          <br>
-        {% else %}
-          <label>{{ field }}</label><br>
-          <input name={{ field }} type="text" value={{ form[field] }}><br>
-        {% endif %}
+        <label>{{ field }}</label><br>
+        <input name={{ field }} type="text" value={{ form[field] }}><br>
       {% endif %}
-    {% endfor %} 
-  {% endmacro %}
-
-  <form id="lyraForm" action="/process-data" method="post">
-    <label>API url destination</label><br>
-    <input name="rest_api_server_name" type="text" value="https://api.payzen.lat/" required>
-    <br><br>
-    {{ testing(form) }}
+    {% endif %}
+  {% endfor %} 
+{% endmacro %}
+  
+<body>
+  <form class="form" id="lyraForm" action="/process-data" method="post">
+    <label>API url destination: <em>Be aware of the url ends with " / "</em> </label><br>
+    <input name="rest_api_server_name" type="text" placeholder="https://api.payzen.lat/" value="" >
+    <br>
+    {{ load_form(form) }}
     <br>
     <h6>Activate kr-popin</h6>
     <label class="switch">

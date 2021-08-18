@@ -28,16 +28,20 @@ def index():
 
 @app.route("/process-data", methods=['POST'])
 def capture_ipn():
+    api_url = request.form.get('rest_api_server_name')
     send_body = service.new_body_to_send(transactional_parameters)
     app.logger.info(json.dumps(send_body, indent=4))
-    formToken = create_form_token(json.dumps(send_body))
+    form_token = create_form_token(json.dumps(send_body), api_url)
+
+    if form_token == None:
+        return render_template('error.html')
 
     return render_template(
         'embedded_form.html', 
-        rest_api_server_name=behavior_parameters['rest_api_server_name'] if request.form.get('rest_api_server_name') is None else request.form.get('rest_api_server_name'),
+        rest_api_server_name=behavior_parameters['rest_api_server_name'] if api_url is '' else api_url,
         kr_public_key=behavior_parameters['sdk_public_test_key'],
         kr_popin=True if request.form.get('kr-popin') else False,
-        formToken=formToken, 
+        formToken=form_token, 
     )
 
 
@@ -76,7 +80,7 @@ def redirect_():
         return "Payment decline, exceded retrys attempts."
 
 
-def create_form_token(entry_body):
+def create_form_token(entry_body, url=None):
     """
     Create form token to load the payment method
     """
@@ -84,12 +88,16 @@ def create_form_token(entry_body):
     testing_password = behavior_parameters['testing_password']
     string_to_encode = f"{shopId}:{testing_password}"
 
-    URL = f"{behavior_parameters['rest_api_server_name']}api-payment/V4/Charge/CreatePayment"
+    if url == '':
+        create_payment_url = f"{behavior_parameters['rest_api_server_name']}api-payment/V4/Charge/CreatePayment"
+    else:
+        create_payment_url = f"{url}api-payment/V4/Charge/CreatePayment"
+
     get_encoder = service.encode_to_base64(string_to_encode)
     set_header = {"Authorization": f"Basic {get_encoder}"}
     try:
         form_token = json.loads(requests.post(
-            URL, data=entry_body, headers=set_header
+            create_payment_url, data=entry_body, headers=set_header
         ).text)['answer']['formToken']
         return form_token
     except:
