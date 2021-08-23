@@ -38,7 +38,7 @@ def capture_ipn():
 
     return render_template(
         'embedded_form.html', 
-        rest_api_server_name=behavior_parameters['rest_api_server_name'] if api_url is '' else api_url,
+        rest_api_server_name=behavior_parameters['rest_api_server_name'] if api_url == '' else api_url,
         kr_public_key=behavior_parameters['sdk_public_test_key'],
         kr_popin=True if request.form.get('kr-popin') else False,
         formToken=form_token, 

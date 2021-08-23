@@ -8,7 +8,7 @@ app = Flask(__name__)
 
 def read_yaml():
     with open('./variables.yaml') as f:
-        return json.loads(json.dumps(yaml.load(f)))
+        return json.loads(json.dumps(yaml.load(f, Loader=yaml.FullLoader)))
 
 
 def encode_to_base64(str_to_encode):
