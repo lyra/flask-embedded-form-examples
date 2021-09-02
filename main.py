@@ -30,6 +30,9 @@ def index():
 def capture_ipn():
     api_url = request.form.get('rest_api_server_name')
     send_body = service.new_body_to_send(transactional_parameters)
+    CONTRIB = "Python_Flask_Embedded_Examples_2.0_3.9"
+    send_body['contrib'] = CONTRIB
+
     app.logger.info(json.dumps(send_body, indent=4))
     form_token = create_form_token(json.dumps(send_body), api_url)
 
@@ -80,7 +83,7 @@ def redirect_():
         return "Payment decline, exceded retrys attempts."
 
 
-def create_form_token(entry_body, url=None):
+def create_form_token(s, url=None):
     """
     Create form token to load the payment method
     """
@@ -106,5 +109,5 @@ def create_form_token(entry_body, url=None):
 
 if __name__ == "__main__":
     app.debug = behavior_parameters['test_mode']
-    logging.basicConfig(filename='lyra.log', level=logging.DEBUG)
     app.run(host="127.0.0.1", port=behavior_parameters['port'])
+    logging.basicConfig(filename='lyra.log', level=logging.DEBUG)
