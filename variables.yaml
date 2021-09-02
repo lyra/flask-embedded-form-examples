@@ -1,6 +1,5 @@
 transactionalParameters:
   amount: 500000
-  contrib: "Python_3.9-Flask_v2.0" 
   currency: [
     "COP - Colombian peso", 
     "USD - US dollar", 
