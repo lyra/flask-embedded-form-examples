@@ -9,7 +9,7 @@ import service
 app = Flask(__name__)
 
 
-all_variables = service.read_yaml()
+all_variables = service.read_yaml('./variables.yaml')
 
 behavior_parameters = all_variables['behaviorParameters']
 transactional_parameters = all_variables['transactionalParameters']
@@ -26,11 +26,12 @@ def index():
     return redirect('/?' + service.url_parser(transactional_parameters))
 
 
-@app.route("/process-data", methods=['POST'])
-def capture_ipn():
-    api_url = request.form.get('rest_api_server_name')
+@app.route("/embedded-form", methods=['POST'])
+def process_ipn():
+    api_url = request.form.get('rest_api_server_name') if request.form.get('rest_api_server_name') is None else behavior_parameters['rest_api_server_name']
     send_body = service.new_body_to_send(transactional_parameters)
-    CONTRIB = "Python_Flask_Embedded_Examples_2.0_3.9"
+    CONTRIB = "Python_Flask_Embedded_Examples_2.x_1.0.0/2.0/3.9"
+    
     send_body['contrib'] = CONTRIB
 
     app.logger.info(json.dumps(send_body, indent=4))
@@ -41,14 +42,14 @@ def capture_ipn():
 
     return render_template(
         'embedded_form.html', 
-        rest_api_server_name=behavior_parameters['rest_api_server_name'] if api_url == '' else api_url,
+        rest_api_server_name=api_url.replace('api', 'static'),
         kr_public_key=behavior_parameters['sdk_public_test_key'],
         kr_popin=True if request.form.get('kr-popin') else False,
         formToken=form_token, 
     )
 
 
-@app.route('/ipn', methods=['GET','POST'])
+@app.route('/capture-ipn', methods=['GET','POST'])
 def ipn():
     if request.form.get('kr-answer') == None:
         return "KO - Invalid request.", 400
@@ -83,7 +84,7 @@ def redirect_():
         return "Payment decline, exceded retrys attempts."
 
 
-def create_form_token(s, url=None):
+def create_form_token(entry_body, url=None):
     """
     Create form token to load the payment method
     """

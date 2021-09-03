@@ -31,6 +31,23 @@ transactionalParameters:
       manualValidation: ""
       mid: ""
 behaviorParameters:
+  # Gateway URL: The gateway URL needs to be changed according to your payment provider or your region.
+  # PayZen Europe: https://secure.payzen.eu/vads-payment/
+  # PayZen Brazil: https://secure.payzen.com.br/vads-payment/
+  # PayZen LATAM: https://secure.payzen.lat/vads-payment/
+  # PayZen India: https://secure.payzen.co.in/vads-payment/
+  # Lyra Collect: https://secure.lyra.com/vads-payment/
+  # BNPP IRB: https://e-paiement-securite-bici.com/vads-payment/
+  # Clic&Pay By groupe Crédit du Nord: https://clicandpay.groupecdn.fr/vads-payment/
+  # Cobro Inmediato: https://secure.cobroinmediato.tech/vads-payment/
+  # EpayNC: https://epaync.nc/vads-payment/
+  # Mi Cuenta Web: https://secure.micuentaweb.pe/vads-payment/
+  # OSB: https://secure.osb.pf/vads-payment/
+  # Payty: https://secure.payty.com/vads-payment/
+  # Scellius: https://scelliuspaiement.labanquepostale.fr/vads-payment/
+  # Sogecommerce: https://sogecommerce.societegenerale.eu/vads-payment/
+  # Systempay: https://paiement.systempay.fr/vads-payment/
+  rest_static_url: "change_me"
   rest_api_server_name: "change_me"
   port: 5000
   test_mode: True

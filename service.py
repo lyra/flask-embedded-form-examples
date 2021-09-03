@@ -6,8 +6,8 @@ import yaml
 app = Flask(__name__)
 
 
-def read_yaml():
-    with open('./variables.yaml') as f:
+def read_yaml(file):
+    with open(file) as f:
         return json.loads(json.dumps(yaml.load(f, Loader=yaml.FullLoader)))
 
 
@@ -63,4 +63,5 @@ def new_body_to_send(obj_dict):
         if type(obj_dict[value]) == dict:
             new_body[value] = new_body_to_send(obj_dict[value])
     app.logger.info("Body to send:", new_body)
+
     return new_body
