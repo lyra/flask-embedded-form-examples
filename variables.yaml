@@ -31,24 +31,33 @@ transactionalParameters:
       manualValidation: ""
       mid: ""
 behaviorParameters:
-  # Gateway URL: The gateway URL needs to be changed according to your payment provider or your region.
-  # PayZen Europe: https://secure.payzen.eu/vads-payment/
-  # PayZen Brazil: https://secure.payzen.com.br/vads-payment/
-  # PayZen LATAM: https://secure.payzen.lat/vads-payment/
-  # PayZen India: https://secure.payzen.co.in/vads-payment/
-  # Lyra Collect: https://secure.lyra.com/vads-payment/
-  # BNPP IRB: https://e-paiement-securite-bici.com/vads-payment/
-  # Clic&Pay By groupe Crédit du Nord: https://clicandpay.groupecdn.fr/vads-payment/
-  # Cobro Inmediato: https://secure.cobroinmediato.tech/vads-payment/
-  # EpayNC: https://epaync.nc/vads-payment/
-  # Mi Cuenta Web: https://secure.micuentaweb.pe/vads-payment/
-  # OSB: https://secure.osb.pf/vads-payment/
-  # Payty: https://secure.payty.com/vads-payment/
-  # Scellius: https://scelliuspaiement.labanquepostale.fr/vads-payment/
-  # Sogecommerce: https://sogecommerce.societegenerale.eu/vads-payment/
-  # Systempay: https://paiement.systempay.fr/vads-payment/
+  # URL's examples for rest_static_url
+  # rest_static_url: "https://api-clicandpay.groupecdn.fr/static/"
+  # rest_static_url: "https://static.cobroinmediato.tech/static/"
+  # rest_static_url: "https://epaync.nc/static/"
+  # rest_static_url: "https://api.lyra.com/static/"
+  # rest_static_url: "https://static.micuentaweb.pe/static/"
+  # rest_static_url: "https://static.payty.com/static/"
+  # rest_static_url: "https://secure.payzen.co.in/static/"
+  # rest_static_url: "https://static.payzen.lat/static/"
+  # rest_static_url: "https://static.payzen.eu/static/"
+  # rest_static_url: "https://api.scelliuspaiement.labanquepostale.fr/static/"
+  # rest_static_url: "https://api-sogecommerce.societegenerale.eu/static/"
+  # rest_static_url: "https://api.systempay.fr/static/"
   rest_static_url: "change_me"
+
+  # URL's examples for rest_api_server_name
+  # rest_api_server_name: "https://api-clicandpay.groupecdn.fr/api-payment/"
+  # rest_api_server_name: "https://api.cobroinmediato.tech/api-payment/"
+  # rest_api_server_name: "https://epaync.nc/api-payment/"
+  # rest_api_server_name: "https://api.lyra.com/api-payment/"
+  # rest_api_server_name: "https://api.micuentaweb.pe/api-payment/"
+  # rest_api_server_name: "https://api.payty.com/api-payment/"
+  # rest_api_server_name: "https://secure.payzen.co.in/api-payment/"
+  # rest_api_server_name: "https://api.payzen.lat/api-payment/"
+  # rest_api_server_name: "https://api.payzen.eu/api-payment/"
   rest_api_server_name: "change_me"
+
   port: 5000
   test_mode: True
   shopId: "change_me" 

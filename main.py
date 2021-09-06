@@ -1,7 +1,8 @@
-import json, logging
+import sys, json, logging
 
 import requests
 
+import flask
 from flask import Flask, render_template, request, redirect
 
 import service
@@ -30,7 +31,7 @@ def index():
 def process_ipn():
     api_url = request.form.get('rest_api_server_name') if request.form.get('rest_api_server_name') is None else behavior_parameters['rest_api_server_name']
     send_body = service.new_body_to_send(transactional_parameters)
-    CONTRIB = "Python_Flask_Embedded_Examples_2.x_1.0.0/2.0/3.9"
+    CONTRIB = f"Python_Flask_Embedded_Examples_2.x_1.0.0/{flask.__version__}/{sys.version[:5]}"
     
     send_body['contrib'] = CONTRIB
 
@@ -42,7 +43,7 @@ def process_ipn():
 
     return render_template(
         'embedded_form.html', 
-        rest_api_server_name=api_url.replace('api', 'static'),
+        static_url_name=behavior_parameters['static_url_name'],
         kr_public_key=behavior_parameters['sdk_public_test_key'],
         kr_popin=True if request.form.get('kr-popin') else False,
         formToken=form_token, 
@@ -92,10 +93,10 @@ def create_form_token(entry_body, url=None):
     testing_password = behavior_parameters['testing_password']
     string_to_encode = f"{shopId}:{testing_password}"
 
-    if url == '':
-        create_payment_url = f"{behavior_parameters['rest_api_server_name']}api-payment/V4/Charge/CreatePayment"
+    if url == None:
+        create_payment_url = f"{behavior_parameters['rest_api_server_name']}V4/Charge/CreatePayment"
     else:
-        create_payment_url = f"{url}api-payment/V4/Charge/CreatePayment"
+        create_payment_url = f"{url}V4/Charge/CreatePayment"
 
     get_encoder = service.encode_to_base64(string_to_encode)
     set_header = {"Authorization": f"Basic {get_encoder}"}
