@@ -28,7 +28,7 @@ def index():
 
 @app.route("/embedded-form", methods=['POST'])
 def embedded_form():
-    api_url = request.form.get('rest_server_api_url') if request.form.get('rest_server_api_url') is None else behavior_parameters['rest_server_api_url']
+    api_url = behavior_parameters['rest_server_api_url']
     send_body = service.new_body_to_send(transactional_parameters)
     CONTRIB = f"Python_Flask_Embedded_Examples_2.x_1.0.0/{flask.__version__}/{sys.version[:5]}"
 
