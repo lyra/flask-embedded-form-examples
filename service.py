@@ -5,7 +5,6 @@ import yaml
 
 app = Flask(__name__)
 
-
 def read_yaml(file):
     with open(file) as f:
         return json.loads(json.dumps(yaml.load(f, Loader=yaml.FullLoader)))
@@ -28,7 +27,7 @@ def compute_hmac_sha256_signature(key, message):
 
 def url_parser(obj_dict) -> str:
     """
-    Create url for the form
+    Create URL for the form
     """
     url_str = ''
     for i in obj_dict.keys():

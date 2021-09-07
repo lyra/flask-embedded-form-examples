@@ -1,12 +1,14 @@
 transactionalParameters:
-  amount: 500000
+  amount: 5000
   currency: [
-    "COP - Colombian peso", 
-    "USD - US dollar", 
-    "CAD - Canadian dollar", 
-    "DDK - Danish crown", 
-    "JPY - Japanese yen", 
-    "NOK - Norwegian crown"
+    "COP - Colombian peso",
+    "USD - US dollar",
+    "CAD - Canadian dollar",
+    "DDK - Danish crown",
+    "JPY - Japanese yen",
+    "NOK - Norwegian crown",
+    "EUR - Euro",
+    "USD - US Dollar"
   ]
   formAction: ""
   orderId: "myOrderId-123123"
@@ -31,39 +33,45 @@ transactionalParameters:
       manualValidation: ""
       mid: ""
 behaviorParameters:
-  # URL's examples for rest_static_url
-  # rest_static_url: "https://api-clicandpay.groupecdn.fr/static/"
-  # rest_static_url: "https://static.cobroinmediato.tech/static/"
-  # rest_static_url: "https://epaync.nc/static/"
-  # rest_static_url: "https://api.lyra.com/static/"
-  # rest_static_url: "https://static.micuentaweb.pe/static/"
-  # rest_static_url: "https://static.payty.com/static/"
-  # rest_static_url: "https://secure.payzen.co.in/static/"
-  # rest_static_url: "https://static.payzen.lat/static/"
-  # rest_static_url: "https://static.payzen.eu/static/"
-  # rest_static_url: "https://api.scelliuspaiement.labanquepostale.fr/static/"
-  # rest_static_url: "https://api-sogecommerce.societegenerale.eu/static/"
-  # rest_static_url: "https://api.systempay.fr/static/"
+  # REST static resources URL: This URL needs to be changed according to your payment provider or your region.
+  # Clic&Pay By groupe Crédit du Nord: https://api-clicandpay.groupecdn.fr/static/
+  # Cobro Inmediato: https://static.cobroinmediato.tech/static/
+  # EpayNC: https://epaync.nc/static/
+  # Lyra Collect: https://api.lyra.com/static/
+  # Mi Cuenta Web: https://static.micuentaweb.pe/static/
+  # Payty: https://static.payty.com/static/
+  # PayZen India: https://secure.payzen.co.in/static/
+  # PayZen LATAM: https://static.payzen.lat/static/
+  # PayZen Brazil: https://api.payzen.com.br/api-payment/
+  # PayZen Europe: https://static.payzen.eu/static/
+  # Scellius: https://api.scelliuspaiement.labanquepostale.fr/static/
+  # Sogecommerce: https://api-sogecommerce.societegenerale.eu/static/
+  # Systempay: https://api.systempay.fr/static/
   rest_static_url: "change_me"
 
-  # URL's examples for rest_api_server_name
-  # rest_api_server_name: "https://api-clicandpay.groupecdn.fr/api-payment/"
-  # rest_api_server_name: "https://api.cobroinmediato.tech/api-payment/"
-  # rest_api_server_name: "https://epaync.nc/api-payment/"
-  # rest_api_server_name: "https://api.lyra.com/api-payment/"
-  # rest_api_server_name: "https://api.micuentaweb.pe/api-payment/"
-  # rest_api_server_name: "https://api.payty.com/api-payment/"
-  # rest_api_server_name: "https://secure.payzen.co.in/api-payment/"
-  # rest_api_server_name: "https://api.payzen.lat/api-payment/"
-  # rest_api_server_name: "https://api.payzen.eu/api-payment/"
-  rest_api_server_name: "change_me"
+  # REST server API URL: This URL needs to be changed according to your payment provider or your region.
+  # Clic&Pay By groupe Crédit du Nord: https://api-clicandpay.groupecdn.fr/api-payment/
+  # Cobro Inmediato: https://api.cobroinmediato.tech/api-payment/
+  # EpayNC: https://epaync.nc/api-payment/
+  # Lyra Collect: https://api.lyra.com/api-payment/
+  # Mi Cuenta Web: https://api.micuentaweb.pe/api-payment/
+  # Payty: https://api.payty.com/api-payment/
+  # PayZen India: https://secure.payzen.co.in/api-payment/
+  # PayZen LATAM: https://api.payzen.lat/api-payment/
+  # PayZen Brazil: https://static.payzen.lat/static/
+  # PayZen Europe: https://api.payzen.eu/api-payment/
+  # Scellius: https://api.scelliuspaiement.labanquepostale.fr/api-payment/
+  # Sogecommerce: https://api-sogecommerce.societegenerale.eu/api-payment/
+  # Systempay: https://api.systempay.fr/api-payment/
+  rest_server_api_url: "change_me"
 
   port: 5000
+
   test_mode: True
-  shopId: "change_me" 
-  testing_password: "change_me"
-  production_password: "change_me"
-  sdk_public_test_key: "change_me"
-  sdk_public_production_key: "change_me"
-  hmac_sha_256_test_key: "change_me"
-  hmac_sha_256_production_key: "change_me"
+  shop_id: "change_me" 
+  test_password: "change_me"
+  prod_password: "change_me"
+  test_public_key: "change_me"
+  prod_public_key: "change_me"
+  test_hmac_sha_256_key: "change_me"
+  prod_hmac_sha_256_key: "change_me"

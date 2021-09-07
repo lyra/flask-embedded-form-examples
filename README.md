@@ -42,14 +42,14 @@ with the values of your shop, thus you can find them on the BackOffice Vendor.
 Login to BackOffice Vendor, go to `Configuration > Store` then choose the shop you like,
 then go to `API REST Keys` tab and there you will find both production and testing keys.
 
-You will find the keys for `shopId`, `testing_password`, `production_password`, and `rest_api_server_name` at the first part of the page, in the **REST API keys** section.
+You will find the keys for `shop_id`, `test_password`, `prod_password`, and `rest_server_api_url` at the first part of the page, in the **REST API keys** section.
 
 At the second section, **Javascript client and SDK movil**, you will find the keys for 
-`sdk_public_test_key` and `sdk_public_production_key`.
+`test_public_key` and `prod_public_key`.
 
 At the third section, at **REST API: keys used to calculate / check the kr-hash field** 
 you wil find the HMAC SHA 256 key, to compute the signature, for the values 
-`hmac_sha_256_test_key` and `hmac_sha_256_production_key`.
+`test_hmac_sha_256_key` and `prod_hmac_sha_256_key`.
 
 Open your terminal on the project and run the command `python main.py` 
 to run the flask project. By default it will run on `127.0.0.1:5000/`, 
