@@ -7,8 +7,7 @@ transactionalParameters:
     "DDK - Danish crown",
     "JPY - Japanese yen",
     "NOK - Norwegian crown",
-    "EUR - Euro",
-    "USD - US Dollar"
+    "EUR - Euro"
   ]
   formAction: ""
   orderId: "myOrderId-123123"
