@@ -11,7 +11,7 @@ Implementation of Lyra Embedded Form using Flask(Python)
   * *heroku open*
 * Alternatively you can easily deploy using this button:
 
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://github.com/lyra/flask-embedded-form-examples)
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/lyra/flask-embedded-form-examples)
 
 ## Local Installation
 
