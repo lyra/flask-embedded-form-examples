@@ -1,0 +1,54 @@
+{
+  "name": "Lyra Flask Backend",
+  "description": "Backend with Flask for the Embedded Form example. To configure the variables, please login to the merchant Back Office, go to Configuration > Store, then choose the shop you want, then go to REST API keys tab and there you will find both production and test keys. You will find the values for shop_id, test_password, prod_password and rest_server_api_url at the first section named REST API keys. At the second section named, Keys for the JavaScript client and the mobile SDK, you will find the values for test_public_key and prod_public_key. At the third section named, REST API: keys used to calculate / check the kr-hash field, you will find the values test_hmac_sha_256_key and prod_hmac_sha_256_key.",
+  "repository": "https://github.com/lyra/flask-embedded-form-examples",
+  "keywords": ["lyra", "python", "flask"],
+  "env": {
+    "test_mode": {
+      "description": "Set the app into test mode. By default is True.",
+      "required": true,
+      "value": "True"
+    },
+    "retry": {
+      "description": "Number of failed transactions until it is declined. By default it's 3 attempts.",
+      "required": false,
+      "value": 3
+    },
+    "rest_static_url": {
+      "description": "This URL needs to be changed according to your payment provider or your region.",
+      "required": true
+    },
+    "rest_server_api_url": {
+      "description": "This URL needs to be changed according to your payment provider or your region.",
+      "required": true
+    },
+    "shop_id": {
+      "description": "Shop ID, corresponding on your Merchant Back Office",
+      "required": true
+    },
+    "test_password": {
+      "description": "",
+      "required": true
+    },
+    "test_public_key": {
+      "description": "",
+      "required": true
+    },
+    "test_hmac_sha_256_key": {
+      "description": "",
+      "required": true
+    },
+    "prod_password": {
+      "description": "",
+      "required": false
+    },
+    "prod_public_key": {
+      "description": "",
+      "required": false
+    },
+    "prod_hmac_sha_256_key": {
+      "description": "",
+      "required": false
+    }
+  }
+}

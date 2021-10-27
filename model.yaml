@@ -1,0 +1,29 @@
+transactionalParameters:
+  amount: 5000
+  currency: [
+    "COP - Colombian peso",
+    "USD - US dollar",
+    "CAD - Canadian dollar",
+    "DDK - Danish crown",
+    "JPY - Japanese yen",
+    "NOK - Norwegian crown",
+    "EUR - Euro"
+  ]
+  formAction: ""
+  orderId: "myOrderId-123123"
+  taxRate: 19
+  customer:
+    email: "sample@example.com"
+    reference: "321"
+    billingDetails:
+      firstName: ""
+      lastName: ""
+      phoneNumber: ""
+      address: ""
+      address2: ""
+      zipCode: ""
+      city: ""
+      country: ""
+  transactionOptions:
+    cardOptions:
+      retry: ""
